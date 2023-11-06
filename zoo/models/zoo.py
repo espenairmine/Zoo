@@ -12,7 +12,7 @@ class Zoo(models.Model):
     caretaker_work_hours = fields.Integer(default=8)
     total_caretaker_hours = fields.Integer(compute='_compute_total_caretaker_hours')
 
-    @api.depends('caretakers_count', 'caretakers_work_hours')
+    @api.depends('caretaker_count', 'caretaker_work_hours')
     def _compute_total_caretaker_hours(self):
         for zoo in self:
             zoo.total_caretaker_hours = zoo.caretaker_count * zoo.caretaker_work_hours
